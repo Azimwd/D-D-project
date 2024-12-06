@@ -1,0 +1,30 @@
+.header {  
+    position: absolute;
+    font-family: Arial, sans-serif;
+    z-index: 10;
+    top: 3%;
+    width: 100%;
+}
+
+.header .header_inner{
+    max-width: 90rem;
+    margin:auto;
+    display: flex;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+.header .header__menu{  
+    margin-left:auto;
+}
+
+.header .header__menu a{  
+    text-decoration: none;
+    color: aliceblue;
+    margin-left:50px;
+}
+
+.logo img{
+    margin-top: -25px;
+    width: 4rem;
+}

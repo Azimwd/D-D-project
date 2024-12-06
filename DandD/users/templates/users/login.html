@@ -1,14 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/users/style.css' %}">
-</head>
-<body>
-    
-</body>
-</html>
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/users/registration.css' %}">
+{% endblock head %}
+{% block content %}
+    <body class="authentication">
+        <div class="authentication-form__container">
+            <h1 class="authentication__title">Войти</h1>
+            <form action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <p>{{form.non_field_errors}}</p>
+                {% endif %}
+                <div class="authentication__form__input">
+                    <label for="id_username"></label>
+                    <input type="text" id="id_username" name="username" placeholder="Имя пользователя" required>
+                    {% if form.username.errors %}
+                        <p>{{form.username.errors}}</p>
+                    {% endif %}
+                </div>
+                <div class="authentication__form__input">
+                    <label for="id_password"></label>
+                    <input type="password" id="id_password" name="password" placeholder="Пароль" required>
+                    {% if form.passwor1.errors %}
+                        <p>{{form.passwor1.errors}}</p>
+                    {% endif %}
+                </div>
+                <button class="authentication__btn" type="submit">Войти</button>
+            </form>
+        </div>
+    </body>
+{% endblock content %}
