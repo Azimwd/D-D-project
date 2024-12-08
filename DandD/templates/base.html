@@ -14,7 +14,7 @@
     {% block header %}
         <header class="header">
             <div class="header_inner">
-                <a href="#" class="logo"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                <a href="{% url "main:home" %}" class="logo"><img src="{% static 'img/logo.png' %}" alt=""></a>
                 <nav class="header__menu">
                     <a href="#">Персонажи</a>
                     <a href="#">Лор</a>

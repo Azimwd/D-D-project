@@ -1,10 +1,10 @@
 body{
     font-family: Arial, sans-serif;
     background: radial-gradient(circle, #4b2e2b 0%, #2e2e2e 100%);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+}
+
+.background-container__image{
+    margin-left: 5rem;
+    margin-top: 14rem;
 }

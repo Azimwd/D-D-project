@@ -19,9 +19,15 @@
 }
 
 .header .header__menu a{  
+    font-size: 16px;
     text-decoration: none;
-    color: aliceblue;
+    color: #FFFFFF;
     margin-left:50px;
+    cursor: pointer;
+}
+
+.header .header__menu a:hover{  
+    color: #EC9704;
 }
 
 .logo img{
