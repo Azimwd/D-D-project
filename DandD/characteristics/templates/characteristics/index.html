@@ -1,0 +1,1020 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/characteristics/style.css' %}" />
+{% endblock head %} {% block content %}
+{% csrf_token %}
+<div class="stats-list">
+  <header class="char-sheet__header">
+    <h1 class="char-sheet__name">
+      <input
+        name="name"
+        type="text"
+        class="big char-sheet__input"
+        autocomplete="off"
+        value=""
+      /><span class="char-sheet__label absolute">Имя персонажа</span>
+    </h1>
+    <div class="char-sheet__info">
+      <div class="char-sheet__info-section">
+        <p class="char-sheet__info-box">
+          <input
+            name="charClass"
+            type="text"
+            class="small char-sheet__input"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">класс</span>
+        </p>
+        <p class="char-sheet__info-box">
+          <input
+            name="background"
+            type="text"
+            class="small char-sheet__input"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">предыстория</span>
+        </p>
+        <p class="char-sheet__info-box">
+          <input
+            name="playerName"
+            type="text"
+            class="small char-sheet__input"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">имя игрока</span>
+        </p>
+      </div>
+      <div class="char-sheet__info-section">
+        <p class="char-sheet__info-box">
+          <input
+            name="race"
+            type="text"
+            class="small char-sheet__input"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">раса</span>
+        </p>
+        <p class="char-sheet__info-box">
+          <input
+            name="alignment"
+            type="text"
+            class="small char-sheet__input"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">мировоззрение</span>
+        </p>
+        <p class="char-sheet__info-box medium">
+          <input
+            name="experience"
+            type="number"
+            class="small char-sheet__input"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">опыт</span>
+        </p>
+        <p class="char-sheet__info-box small">
+          <input
+            name="level"
+            type="text"
+            class="char-sheet__info-input_small small char-sheet__input"
+            min="1"
+            max="20"
+            autocomplete="off"
+            value=""
+          /><span class="char-sheet__label absolute">уровень</span>
+        </p>
+      </div>
+    </div>
+  </header>
+  <div class="char-sheet__stats char-sheet__stats_default">
+    <div class="stat-block">
+      <p class="stat-block__label">Сила</p>
+      <button class="roller" type="button">
+        <p class="stat-block__modifier" id="Strength__p" data-check="3"></p>
+      </button>
+      <input
+        class="stat-block__score"
+        data-kind="score"
+        type="number"
+        value="10"
+        id="Strength__input"
+      />
+    </div>
+
+    <div class="stat-block">
+      <p class="stat-block__label">Ловкость</p>
+      <button class="roller" type="button">
+        <p class="stat-block__modifier" id="Dexterity__p" data-check="3"></p>
+      </button>
+      <input
+        class="stat-block__score"
+        data-kind="score"
+        type="number"
+        value="10"
+        id="Dexterity__input"
+      />
+    </div>
+
+    <div class="stat-block">
+      <p class="stat-block__label" id="Physique_stat__name">Телосложение</p>
+      <button class="roller" type="button">
+        <p class="stat-block__modifier" id="Physique__p" data-check="3"></p>
+      </button>
+      <input
+        class="stat-block__score"
+        data-kind="score"
+        type="number"
+        value="10"
+        id="Physique__input"
+      />
+    </div>
+
+    <div class="stat-block">
+      <p class="stat-block__label">Интеллект</p>
+      <button class="roller" type="button">
+        <p class="stat-block__modifier" id="Intelligence__p" data-check="3"></p>
+      </button>
+      <input
+        class="stat-block__score"
+        data-kind="score"
+        type="number"
+        value="10"
+        id="Intelligence__input"
+      />
+    </div>
+
+    <div class="stat-block">
+      <p class="stat-block__label">Мудрость</p>
+      <button class="roller" type="button">
+        <p class="stat-block__modifier" id="Wisdom__p" data-check="3"></p>
+      </button>
+      <input
+        class="stat-block__score"
+        data-kind="score"
+        type="number"
+        value="10"
+        id="Wisdom__input"
+      />
+    </div>
+
+    <div class="stat-block">
+      <p class="stat-block__label">Харизма</p>
+      <button class="roller" type="button">
+        <p class="stat-block__modifier" id="Charisma__p" data-check="3"></p>
+      </button>
+      <input
+        class="stat-block__score"
+        data-kind="score"
+        type="number"
+        value="10"
+        id="Charisma__input"
+      />
+    </div>
+    
+  </div>
+
+  <div class="modifier-block" id="inspiration_id">
+    <div class="modifier-block__wrap">
+      <button class="text-block__controls-button no-print" data-sign="+" type="button">
+        +
+      </button>
+      <p class="modifier-block__modifier ellipsis">10</p>
+      <button class="text-block__controls-button no-print" data-sign="-" type="button">
+        −
+      </button>
+    </div>
+    <p class="modifier-block__label">пассивная мудрость (Восприятие)</p>
+  </div>
+
+  <div class="Othe__Proficiencies__and__Languages__textarea_block">  
+    <textarea class="Othe__Proficiencies__and__Languages__textarea_block__textarea" name="" id="Othe__Proficiencies__and__Languages__textarea_block"></textarea>
+    <label for="#"><p>Умения и способности</p></label>
+  </div>
+
+  <div class="char-sheet__skills">
+    <div class="modifier-block">
+      <div class="modifier-block__wrap">
+        <p class="modifier-block__modifier square">
+          <label class="inspiration" for="inspiration-check"
+            ><input
+              class="inspiration__check"
+              id="inspiration-check"
+              type="checkbox"
+          /></label>
+        </p>
+      </div>
+      <p class="modifier-block__label">вдохновение</p>
+    </div>
+    <div class="modifier-block">
+      <div class="modifier-block__wrap">
+        <button
+          class="text-block__controls-button no-print"
+          data-sign="+"
+          type="button"
+        >
+          +
+        </button>
+        <p class="modifier-block__modifier round">+0</p>
+        <button
+          class="text-block__controls-button no-print"
+          data-sign="-"
+          type="button"
+        >
+          −
+        </button>
+      </div>
+      <p class="modifier-block__label">Бонус владения</p>
+    </div>
+    <div class="saves-block">
+      <div class="char-skill">
+        <label class="checkdot char-skill__check" for="checkdot-str"
+          ><input
+            class="checkdot__input"
+            id="checkdot-str"
+            type="checkbox"
+            name="str" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            name="checkdot-str"
+            id="Strength__p checkdot-str"
+          />
+          
+        </button>
+        <p class="char-skill__label">Сила</p>
+      </div>
+      <div class="char-skill">
+        <label class="checkdot char-skill__check" for="checkdot-dex"
+          ><input
+            class="checkdot__input"
+            id="checkdot-dex"
+            type="checkbox"
+            name="dex" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            name = "checkdot-dex"
+            id="Dexterity__p checkdot-dex"
+          />
+        </button>
+        <p class="char-skill__label">Ловкость</p>
+      </div>
+      <div class="char-skill">
+        <label class="checkdot char-skill__check" for="checkdot-con"
+          ><input
+            class="checkdot__input"
+            id="checkdot-con"
+            type="checkbox"
+            name="con" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            name="checkdot-con "
+            id="Physique__p checkdot-con"
+          />
+        </button>
+        <p class="char-skill__label">Телосложение</p>
+      </div>
+      <div class="char-skill">
+        <label class="checkdot char-skill__check" for="checkdot-intelligence"
+          ><input
+            class="checkdot__input"
+            id="checkdot-intelligence"
+            type="checkbox"
+            name="int" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            name="checkdot-intelligence"
+            id="Intelligence__p checkdot-intelligence"
+          />
+        </button>
+        <p class="char-skill__label">Интеллект</p>
+      </div>
+      <div class="char-skill">
+        <label class="checkdot char-skill__check" for="checkdot-wis"
+          ><input
+            class="checkdot__input"
+            id="checkdot-wis"
+            type="checkbox"
+            name="wis" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            name="checkdot-wis"
+            id="Wisdom__p checkdot-wis"
+          />
+        </button>
+        <p class="char-skill__label">Мудрость</p>
+      </div>
+      <div class="char-skill">
+        <label class="checkdot char-skill__check" for="checkdot-cha"
+          ><input
+            class="checkdot__input"
+            id="checkdot-cha"
+            type="checkbox"
+            name="cha" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            name="checkdot-cha"
+            id="Charisma__p checkdot-cha"
+          />
+        </button>
+        <p class="char-skill__label">Харизма</p>
+      </div>
+      <span class="char-sheet__label centered">Спасброски</span>
+    </div>
+    <div class="saves-block">
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-acrobatics"
+          ><input
+            class="checkdot__input"
+            id="checkdot-acrobatics"
+            type="checkbox"
+            name="acrobatics" data-id="1"/><span class="checkdot__marker"></span></label
+        >
+        
+        
+        <button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Dexterity__p checkdot-acrobatics"
+          />
+        </button>
+        <p class="char-skill__label">
+          Акробатика <span class="char-skill__label-base">(Лов)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-investigation"
+          ><input
+            class="checkdot__input"
+            id="checkdot-investigation"
+            type="checkbox"
+            name="investigation" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Intelligence__p checkdot-investigation"
+          />
+        </button>
+        <p class="char-skill__label">
+          Анализ <span class="char-skill__label-base">(Инт)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-athletics"
+          ><input
+            class="checkdot__input"
+            id="checkdot-athletics"
+            type="checkbox"
+            name="athletics" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Strength__p checkdot-athletics"
+          />
+        </button>
+        <p class="char-skill__label">
+          Атлетика <span class="char-skill__label-base">(Сил)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-perception"
+          ><input
+            class="checkdot__input"
+            id="checkdot-perception"
+            type="checkbox"
+            name="perception" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Wisdom__p checkdot-perception"
+          />
+        </button>
+        <p class="char-skill__label">
+          Восприятие <span class="char-skill__label-base">(Муд)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-survival"
+          ><input
+            class="checkdot__input"
+            id="checkdot-survival"
+            type="checkbox"
+            name="survival" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Wisdom__p checkdot-survival"
+          />
+        </button>
+        <p class="char-skill__label">
+          Выживание <span class="char-skill__label-base">(Муд)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-performance"
+          ><input
+            class="checkdot__input"
+            id="checkdot-performance"
+            type="checkbox"
+            name="performance" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Charisma__p checkdot-performance"
+          />
+        </button>
+        <p class="char-skill__label">
+          Выступление <span class="char-skill__label-base">(Хар)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-intimidation"
+          ><input
+            class="checkdot__input"
+            id="checkdot-intimidation"
+            type="checkbox"
+            name="intimidation" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Charisma__p checkdot-intimidation"
+          />
+        </button>
+        <p class="char-skill__label">
+          Запугивание <span class="char-skill__label-base">(Хар)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-history"
+          ><input
+            class="checkdot__input"
+            id="checkdot-history"
+            type="checkbox"
+            name="history" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Intelligence__p checkdot-history"
+          />
+        </button>
+        <p class="char-skill__label">
+          История <span class="char-skill__label-base">(Инт)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-sleight of hand"
+          ><input
+            class="checkdot__input"
+            id="checkdot-sleight of hand"
+            type="checkbox"
+            name="sleight of hand"data-id="1" /><span
+            class="checkdot__marker"
+          ></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Dexterity__p checkdot-sleight of hand"
+          />
+        </button>
+        <p class="char-skill__label">
+          Ловкость рук <span class="char-skill__label-base">(Лов)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-arcana"
+          ><input
+            class="checkdot__input"
+            id="checkdot-arcana"
+            type="checkbox"
+            name="arcana" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Intelligence__p checkdot-arcana"
+          />
+        </button>
+        <p class="char-skill__label">
+          Магия <span class="char-skill__label-base">(Инт)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-medicine"
+          ><input
+            class="checkdot__input"
+            id="checkdot-medicine"
+            type="checkbox"
+            name="medicine" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Wisdom__p checkdot-medicine"
+          />
+        </button>
+        <p class="char-skill__label">
+          Медицина <span class="char-skill__label-base">(Муд)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-deception"
+          ><input
+            class="checkdot__input"
+            id="checkdot-deception"
+            type="checkbox"
+            name="deception" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Charisma__p checkdot-deception"
+          />
+        </button>
+        <p class="char-skill__label">
+          Обман <span class="char-skill__label-base">(Хар)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-nature"
+          ><input
+            class="checkdot__input"
+            id="checkdot-nature"
+            type="checkbox"
+            name="nature" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Intelligence__p checkdot-nature"
+          />
+        </button>
+        <p class="char-skill__label">
+          Природа <span class="char-skill__label-base">(Инт)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-insight"
+          ><input
+            class="checkdot__input"
+            id="checkdot-insight"
+            type="checkbox"
+            name="insight" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Wisdom__p checkdot-insight"
+          />
+        </button>
+        <p class="char-skill__label">
+          Проницательность <span class="char-skill__label-base">(Муд)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-religion"
+          ><input
+            class="checkdot__input"
+            id="checkdot-religion"
+            type="checkbox"
+            name="religion" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Intelligence__p checkdot-religion"
+          />
+        </button>
+        <p class="char-skill__label">
+          Религия <span class="char-skill__label-base">(Инт)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-stealth"
+          ><input
+            class="checkdot__input"
+            id="checkdot-stealth"
+            type="checkbox"
+            name="stealth" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Dexterity__p checkdot-stealth"
+          />
+        </button>
+        <p class="char-skill__label">
+          Скрытность <span class="char-skill__label-base">(Лов)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-persuasion"
+          ><input
+            class="checkdot__input"
+            id="checkdot-persuasion"
+            type="checkbox"
+            name="persuasion" data-id="1"/><span class="checkdot__marker"></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Charisma__p checkdot-persuasion"
+          />
+        </button>
+        <p class="char-skill__label">
+          Убеждение <span class="char-skill__label-base">(Хар)</span>
+        </p>
+      </div>
+      <div class="char-skill small">
+        <label class="checkdot char-skill__check" for="checkdot-animal handling"
+          ><input
+            class="checkdot__input"
+            id="checkdot-animal handling"
+            type="checkbox"
+            name="animal handling" data-id="1"/><span
+            class="checkdot__marker"
+          ></span></label
+        ><button class="roller" type="button">
+          <input
+            class="char-skill__modifier"
+            type="text"
+            max="15"
+            min="-9"
+            value="+0"
+            id="Wisdom__p checkdot-animal handling"
+          />
+        </button>
+        <p class="char-skill__label">
+          Уход за животными <span class="char-skill__label-base">(Муд)</span>
+        </p>
+      </div>
+      <span class="char-sheet__label centered">Навыки</span>
+    </div>
+  </div>
+
+  <div class="char-sheet__body-column">
+    <div class="vitality-block">
+      <div class="vitality-block__box no-back">
+        <svg
+          class="vitality-block__shield"
+          width="48"
+          height="60"
+          viewBox="0 0 48 60"
+          fill="none"
+        >
+          <path
+            d="M23.8494 0.802124L1.86096 12.5092V36.2236L9.39125 50.3321L23.8494 59.0374L38.0063 50.3321L46.139 36.2236V12.5092L23.8494 0.802124Z"
+            fill="#F2F2F0"
+          ></path>
+          <path
+            d="M46.8264 12.1484L24.2164 0.13221C23.881 -0.0463404 23.479 -0.0438346 23.1461 0.138475L1.16172 12.1546C0.801164 12.352 0.577545 12.7291 0.577545 13.1395V28.8356C0.590736 41.7383 8.25532 53.4111 20.1084 58.5803L23.1599 59.9066C23.445 60.0306 23.7698 60.0312 24.0556 59.9078L27.494 58.4268C39.5669 53.3697 47.4212 41.5841 47.4225 28.5243V13.1395C47.4225 12.7247 47.1932 12.3432 46.8264 12.1484ZM45.921 28.5C45.9185 40.6596 38.2441 52.2944 27.0029 57L23.6109 58.2L20.6968 57C9.66353 52.1885 2.09155 41.3562 2.07899 29.3457V13.2L23.6997 1.5L45.921 13.2V28.5Z"
+            fill="black"
+          ></path></svg
+        ><input
+          name="ac"
+          type="number"
+          class="vitality-block__box-value vitality-block__shield-input char-sheet__input"
+          autocomplete="off"
+          value="10"
+        />
+        <p class="char-sheet__label centered min">КЗ</p>
+      </div>
+      <div class="vitality-block__box vitality-block__box-initiative">
+        <button class="roller" type="button">
+          <input
+            name="initiative"
+            type="text"
+            class="vitality-block__box-value char-sheet__input"
+            autocomplete="off"
+            value="+0"
+          />
+        </button>
+        <p class="char-sheet__label centered min">Инициатива</p>
+      </div>
+      <div class="vitality-block__box">
+        <input
+          name="speed"
+          type="text"
+          class="vitality-block__box-value char-sheet__input"
+          autocomplete="off"
+          value=""
+        />
+        <p class="char-sheet__label centered min">Скорость</p>
+      </div>
+      <div class="vitality-block__hp">
+        <label for="vitality-max" class="vitality-block__input-label"
+          >Максимум хитов<input
+            id="vitality-max"
+            name="hp-max"
+            type="number"
+            class="vitality-block__input vitality-block__hp-max char-sheet__input"
+            autocomplete="off"
+            value="" /></label
+        ><input
+          id="vitality-current"
+          name="hp-current"
+          type="text"
+          class="vitality-block__hp-input char-sheet__input"
+          autocomplete="off"
+          value=""
+        />
+        <p class="char-sheet__label centered">Текущие хиты</p>
+      </div>
+      <div class="vitality-block__hp vitality-block__hp_temp">
+        <input
+          id="vitality-temp"
+          name="hp-temp"
+          type="number"
+          class="vitality-block__hp-input char-sheet__input"
+          autocomplete="off"
+          value=""
+        />
+        <p class="char-sheet__label centered">Временные хиты</p>
+      </div>
+      <div class="sasa">
+        <div class="vitality-block__medium vitality-block__medium-hit-die">
+          <label for="vitality-dice" class="vitality-block__input-label"
+            >Всего<input
+              id="vitality-dice-current"
+              name="hp-dice-current"
+              type="text"
+              class="vitality-block__input vitality-block__hp-max char-sheet__input"
+              autocomplete="off"
+              value="" /></label
+          ><button class="roller" type="button">
+            <input
+              id="vitality-die"
+              name="hit-die"
+              type="text"
+              class="vitality-block__hp-input small char-sheet__input"
+              autocomplete="off"
+              value=""
+            />
+          </button>
+          <p class="char-sheet__label centered min">Кость хитов</p>
+        </div>
+        <div class="vitality-block__medium">
+          <div class="vitality-block__death">
+            <p class="vitality-block__death-label">Успехи</p>
+            <div class="vitality-block__death-wrap">
+              <span class="vitality-block__death-circle"
+                ><label class="checkdot no-print" for="checkdot-deathSuccess_0"
+                  ><input
+                    class="checkdot__input"
+                    id="checkdot-deathSuccess_0"
+                    type="checkbox"
+                    name="deathSuccess_0" /><span
+                    class="checkdot__marker"
+                  ></span></label></span
+              ><span class="vitality-block__death-circle"
+                ><label class="checkdot no-print" for="checkdot-deathSuccess_1"
+                  ><input
+                    class="checkdot__input"
+                    id="checkdot-deathSuccess_1"
+                    type="checkbox"
+                    name="deathSuccess_1" /><span
+                    class="checkdot__marker"
+                  ></span></label></span
+              ><span class="vitality-block__death-circle"
+                ><label class="checkdot no-print" for="checkdot-deathSuccess_2"
+                  ><input
+                    class="checkdot__input"
+                    id="checkdot-deathSuccess_2"
+                    type="checkbox"
+                    name="deathSuccess_2" /><span
+                    class="checkdot__marker"
+                  ></span></label
+              ></span>
+            </div>
+          </div>
+          <div class="vitality-block__death">
+            <p class="vitality-block__death-label">Провалы</p>
+            <div class="vitality-block__death-wrap">
+              <span class="vitality-block__death-circle"
+                ><label class="checkdot no-print" for="checkdot-deathFail_0"
+                  ><input
+                    class="checkdot__input"
+                    id="checkdot-deathFail_0"
+                    type="checkbox"
+                    name="deathFail_0" /><span
+                    class="checkdot__marker"
+                  ></span></label></span
+              ><span class="vitality-block__death-circle"
+                ><label class="checkdot no-print" for="checkdot-deathFail_1"
+                  ><input
+                    class="checkdot__input"
+                    id="checkdot-deathFail_1"
+                    type="checkbox"
+                    name="deathFail_1" /><span
+                    class="checkdot__marker"
+                  ></span></label></span
+              ><span class="vitality-block__death-circle"
+                ><label class="checkdot no-print" for="checkdot-deathFail_2"
+                  ><input
+                    class="checkdot__input"
+                    id="checkdot-deathFail_2"
+                    type="checkbox"
+                    name="deathFail_2" /><span
+                    class="checkdot__marker"
+                  ></span></label
+              ></span>
+            </div>
+          </div>
+          <p class="char-sheet__label centered min">Спасброски от смерти</p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="char-sheet__Attacks_and_Spells">
+      
+      <textarea class="char-sheet__Attacks_and_Spells__textarea" name="" id="Attacks_and_Spells"></textarea>
+      <label for="#"><p>Атаки и заклинания</p></label>
+    </div>
+    <div class="char-sheet__equipment-wrapper">
+      <form class="coins-block" autocomplete="off">
+        <div class="coins-block__coin">
+          <span class="coins-block__label">мм</span
+          ><input
+            name="cp"
+            type="number"
+            class="coins-block__input char-sheet__input"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+        <div class="coins-block__coin">
+          <span class="coins-block__label">см</span
+          ><input
+            name="sp"
+            type="number"
+            class="coins-block__input char-sheet__input"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+        <div class="coins-block__coin">
+          <span class="coins-block__label">зм</span
+          ><input
+            name="gp"
+            type="number"
+            class="coins-block__input char-sheet__input"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+        <div class="coins-block__coin">
+          <span class="coins-block__label">эм</span
+          ><input
+            name="ep"
+            type="number"
+            class="coins-block__input char-sheet__input"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+        <div class="coins-block__coin">
+          <span class="coins-block__label">пм</span
+          ><input
+            name="pp"
+            type="number"
+            class="coins-block__input char-sheet__input"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+
+       
+      </form>
+      <div class="char-sheet__equipment-wrapper__textarea_block">
+        
+        <textarea class="char-sheet__equipment-wrapper__textarea_block__textarea" name="" id="char-sheet__equipment-wrapper"></textarea>
+        <label for="#"><p>Снаряжение</p></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities">
+    <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
+      <label for="#"><p>Черты характера</p></label>
+      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Character-Traits"></textarea>
+      
+    </div>
+    <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
+      <label for="#"><p>Идеалы</p></label>
+      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Ideals"></textarea>
+      
+    </div>
+    <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
+      <label for="#"><p>Привязанности</p></label>
+      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Affections"></textarea>
+    </div>
+
+    <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
+      <label for="#"><p>Слабости</p></label>
+      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Weaknesses"></textarea>
+    </div>
+
+    <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
+      
+      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Skills-and-abilities"></textarea>
+      <label for="#"><p>Умения и способности</p></label>
+    </div>
+  </div>
+
+
+</div>
+
+<div id="information-block" class="hidden">
+  <div id="information"></div>
+  <div id="comments"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src=" {% static "js/characteristics/scripts.js" %} ">  </script>
+{% endblock content %}

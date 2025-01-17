@@ -7,11 +7,10 @@ from django.urls import reverse
 
 
 def registration(request):
-    
+
     if request.method == 'POST':
 
         form = UserRegistrationForm(data=request.POST)
-        print('post')
         if form.is_valid():
 
             form.save()

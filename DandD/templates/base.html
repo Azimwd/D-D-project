@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/users/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/users/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/header.css' %}">
     {% block head %}
     {% endblock head %}
 </head>
@@ -14,9 +13,9 @@
     {% block header %}
         <header class="header">
             <div class="header_inner">
-                <a href="{% url "main:home" %}" class="logo"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                {% comment %} <a href="{% url "main:home" %}" class="logo"><img src="{% static 'img/logo.png' %}" alt=""></a> {% endcomment %}
                 <nav class="header__menu">
-                    <a href="#">Персонажи</a>
+                    <a href="{% url "characteristics:characteristics_page" %}">Персонажи</a>
                     <a href="#">Лор</a>
                     <a href="#">Комната</a>
                    

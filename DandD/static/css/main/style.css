@@ -1,0 +1,79 @@
+body{
+    background: #222222;
+}
+
+.background-container__image{
+    margin-left: 5rem;
+    margin-top: 14rem;
+}
+.background-container__image .background__image{
+    width: 40%;
+}
+
+.main-activity__title{
+    color: aliceblue;
+    display: block;
+    position: absolute;
+    left: 78em;
+    top: 13.5rem;
+    display: flex;
+}
+
+.main-activity__container{
+    position: absolute;
+    left: 60rem;
+    top: 21rem;
+    display: flex;
+}
+
+.main-activity{
+    width: 15rem;
+    border-left: white solid 1px;
+    color: aliceblue;
+}
+
+.main-activity a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.main-activity.block1{
+    border-left: none;
+}
+
+.main-activity.block2{
+    padding-left: 1rem;
+}
+
+.main-activity.block3{
+    padding-left: 1rem;
+}
+
+.dice__container{
+    position: absolute;
+    left: 70em;
+    top: 38rem;
+    display: flex;
+}
+
+/* Добавляем анимацию  */
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0); }
+    20% { transform: translate(-2px, 2px) rotate(-2deg); }
+    40% { transform: translate(2px, -2px) rotate(2deg); }
+    60% { transform: translate(-2px, 2px) rotate(-1deg); }
+    80% { transform: translate(2px, -2px) rotate(1deg); }
+    100% { transform: translate(0, 0) rotate(0); }
+}
+
+.dice__container .dice__container-dice{
+    width: 6%;
+    margin-right: 2rem;
+    
+}
+
+.dice__container-dice:hover {
+    animation: shake 0.6s ease-in-out infinite;
+}
+
