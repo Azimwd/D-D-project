@@ -1390,7 +1390,7 @@ button, input, optgroup, select, textarea {
   pointer-events: none;
   position: absolute;
   top: -4pt;
-  width: 234pt;
+  width: 234.7pt;
   z-index: 10;
   margin-top: 20.4px;
 }
@@ -1513,7 +1513,7 @@ button, input, optgroup, select, textarea {
   resize:none;
   outline:none;
   overflow: scroll;
-  margin-bottom: 5pt;
+  margin-bottom: 6.9pt;
 }
 
 .Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities label P{
@@ -1523,8 +1523,8 @@ button, input, optgroup, select, textarea {
 }
 
 #Skills-and-abilities{
-  height: 378pt;
-  margin-top: 9pt;
+  height: 373pt;
+  margin-top: 6.5pt;
   margin-bottom: 0pt;
 }
 

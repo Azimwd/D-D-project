@@ -1,21 +1,22 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponse
 import requests
 from bs4 import BeautifulSoup as bs
-import pandas as pd
+from rest_framework import viewsets
+from .models import Characteristics
+from .serializers import CharacteristicsSerializer
 
 
-from bs4 import BeautifulSoup as bs
-import requests
-
-from django.http import JsonResponse
+class CharacteristicsViewSet(viewsets.ModelViewSet):
+    queryset = Characteristics.objects.all()
+    serializer_class = CharacteristicsSerializer
 
 def characteristics_page(request):
     context = {
         'information_ul': None,
         'comments_str': None,
         }  # По умолчанию имя отсутствует
+    
     if request.method == "POST":
         text = request.POST.get('text', '')
         URL_TEMPLATE = text

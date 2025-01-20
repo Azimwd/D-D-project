@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'characteristics',
     'create_a_character',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
