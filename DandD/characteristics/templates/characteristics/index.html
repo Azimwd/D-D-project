@@ -1,7 +1,11 @@
 {% extends "base.html" %} {% load static %} {% block head %}
+
 <link rel="stylesheet" href="{% static 'css/characteristics/style.css' %}" />
+<meta name="csrf-token" content="{{ csrf_token }}">
 {% endblock head %} {% block content %}
 {% csrf_token %}
+
+
 <div class="stats-list">
   <header class="char-sheet__header">
     <h1 class="char-sheet__name">
@@ -10,7 +14,7 @@
         type="text"
         class="big char-sheet__input"
         autocomplete="off"
-        value=""
+        value="{{character.name}}"
       /><span class="char-sheet__label absolute">Имя персонажа</span>
     </h1>
     <div class="char-sheet__info">
@@ -21,7 +25,8 @@
             type="text"
             class="small char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.character_class}}"
+            id="class"
           /><span class="char-sheet__label absolute">класс</span>
         </p>
         <p class="char-sheet__info-box">
@@ -30,7 +35,8 @@
             type="text"
             class="small char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.background}}"
+            id="background"
           /><span class="char-sheet__label absolute">предыстория</span>
         </p>
         <p class="char-sheet__info-box">
@@ -39,7 +45,8 @@
             type="text"
             class="small char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.player_name}}"
+            id="playerName"
           /><span class="char-sheet__label absolute">имя игрока</span>
         </p>
       </div>
@@ -50,7 +57,8 @@
             type="text"
             class="small char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.race}}"
+            id="race"
           /><span class="char-sheet__label absolute">раса</span>
         </p>
         <p class="char-sheet__info-box">
@@ -59,7 +67,8 @@
             type="text"
             class="small char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.alignment}}"
+            id="alignment"
           /><span class="char-sheet__label absolute">мировоззрение</span>
         </p>
         <p class="char-sheet__info-box medium">
@@ -68,7 +77,8 @@
             type="number"
             class="small char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.experience}}"
+            id="experience"
           /><span class="char-sheet__label absolute">опыт</span>
         </p>
         <p class="char-sheet__info-box small">
@@ -79,7 +89,8 @@
             min="1"
             max="20"
             autocomplete="off"
-            value=""
+            value="{{character.level}}"
+            id="level"
           /><span class="char-sheet__label absolute">уровень</span>
         </p>
       </div>
@@ -95,8 +106,9 @@
         class="stat-block__score"
         data-kind="score"
         type="number"
-        value="10"
+        value="{{ character.strength }}"
         id="Strength__input"
+        autocomplete="off"
       />
     </div>
 
@@ -109,8 +121,9 @@
         class="stat-block__score"
         data-kind="score"
         type="number"
-        value="10"
+        value="{{character.dexterity}}"
         id="Dexterity__input"
+        autocomplete="off"
       />
     </div>
 
@@ -123,8 +136,9 @@
         class="stat-block__score"
         data-kind="score"
         type="number"
-        value="10"
+        value="{{character.constitution}}"
         id="Physique__input"
+        autocomplete="off"
       />
     </div>
 
@@ -137,8 +151,9 @@
         class="stat-block__score"
         data-kind="score"
         type="number"
-        value="10"
+        value="{{character.intelligence}}"
         id="Intelligence__input"
+        autocomplete="off"
       />
     </div>
 
@@ -151,8 +166,9 @@
         class="stat-block__score"
         data-kind="score"
         type="number"
-        value="10"
+        value="{{character.wisdom}}"
         id="Wisdom__input"
+        autocomplete="off"
       />
     </div>
 
@@ -165,8 +181,9 @@
         class="stat-block__score"
         data-kind="score"
         type="number"
-        value="10"
+        value="{{character.charisma}}"
         id="Charisma__input"
+        autocomplete="off"
       />
     </div>
     
@@ -186,7 +203,7 @@
   </div>
 
   <div class="Othe__Proficiencies__and__Languages__textarea_block">  
-    <textarea class="Othe__Proficiencies__and__Languages__textarea_block__textarea" name="" id="Othe__Proficiencies__and__Languages__textarea_block"></textarea>
+    <textarea class="text__textarea" name="" id="Othe__Proficiencies__and__Languages__textarea_block" autocomplete="off" value="">{{character.other_proficiencies}}</textarea>
     <label for="#"><p>Прочие владения и языки</p></label>
   </div>
 
@@ -199,6 +216,7 @@
               class="inspiration__check"
               id="inspiration-check"
               type="checkbox"
+              {{character.inspiration}}=""
           /></label>
         </p>
       </div>
@@ -231,7 +249,7 @@
             class="checkdot__input"
             id="checkdot-str"
             type="checkbox"
-            name="str" data-id="1"/><span class="checkdot__marker"></span></label
+            name="str" data-id="{{character.st_strength}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -252,7 +270,7 @@
             class="checkdot__input"
             id="checkdot-dex"
             type="checkbox"
-            name="dex" data-id="1"/><span class="checkdot__marker"></span></label
+            name="dex" data-id="{{character.st_dexterity}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -272,7 +290,7 @@
             class="checkdot__input"
             id="checkdot-con"
             type="checkbox"
-            name="con" data-id="1"/><span class="checkdot__marker"></span></label
+            name="con" data-id="{{character.st_constitution}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -292,7 +310,7 @@
             class="checkdot__input"
             id="checkdot-intelligence"
             type="checkbox"
-            name="int" data-id="1"/><span class="checkdot__marker"></span></label
+            name="int" data-id="{{character.st_intelligence}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -312,7 +330,7 @@
             class="checkdot__input"
             id="checkdot-wis"
             type="checkbox"
-            name="wis" data-id="1"/><span class="checkdot__marker"></span></label
+            name="wis" data-id="{{character.st_wisdom}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -332,7 +350,7 @@
             class="checkdot__input"
             id="checkdot-cha"
             type="checkbox"
-            name="cha" data-id="1"/><span class="checkdot__marker"></span></label
+            name="cha" data-id="{{character.st_charisma}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -355,10 +373,9 @@
             class="checkdot__input"
             id="checkdot-acrobatics"
             type="checkbox"
-            name="acrobatics" data-id="1"/><span class="checkdot__marker"></span></label
+            name="acrobatics" data-id="{{character.acrobatics}}"/><span class="checkdot__marker"></span></label
         >
-        
-        
+
         <button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -379,7 +396,7 @@
             class="checkdot__input"
             id="checkdot-investigation"
             type="checkbox"
-            name="investigation" data-id="1"/><span class="checkdot__marker"></span></label
+            name="investigation" data-id="{{character.analysis}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -400,7 +417,7 @@
             class="checkdot__input"
             id="checkdot-athletics"
             type="checkbox"
-            name="athletics" data-id="1"/><span class="checkdot__marker"></span></label
+            name="athletics" data-id="{{character.athletics}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -421,7 +438,7 @@
             class="checkdot__input"
             id="checkdot-perception"
             type="checkbox"
-            name="perception" data-id="1"/><span class="checkdot__marker"></span></label
+            name="perception" data-id="{{character.perception}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -442,7 +459,7 @@
             class="checkdot__input"
             id="checkdot-survival"
             type="checkbox"
-            name="survival" data-id="1"/><span class="checkdot__marker"></span></label
+            name="survival" data-id="{{character.survival}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -463,7 +480,7 @@
             class="checkdot__input"
             id="checkdot-performance"
             type="checkbox"
-            name="performance" data-id="1"/><span class="checkdot__marker"></span></label
+            name="performance" data-id="{{character.performance}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -484,7 +501,7 @@
             class="checkdot__input"
             id="checkdot-intimidation"
             type="checkbox"
-            name="intimidation" data-id="1"/><span class="checkdot__marker"></span></label
+            name="intimidation" data-id="{{character.intimidation}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -505,7 +522,7 @@
             class="checkdot__input"
             id="checkdot-history"
             type="checkbox"
-            name="history" data-id="1"/><span class="checkdot__marker"></span></label
+            name="history" data-id="{{character.history}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -526,7 +543,7 @@
             class="checkdot__input"
             id="checkdot-sleight of hand"
             type="checkbox"
-            name="sleight of hand"data-id="1" /><span
+            name="sleight of hand"data-id="{{character.sleight_of_hand}}" /><span
             class="checkdot__marker"
           ></span></label
         ><button class="roller" type="button">
@@ -549,7 +566,7 @@
             class="checkdot__input"
             id="checkdot-arcana"
             type="checkbox"
-            name="arcana" data-id="1"/><span class="checkdot__marker"></span></label
+            name="arcana" data-id="{{character.magic}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -570,7 +587,7 @@
             class="checkdot__input"
             id="checkdot-medicine"
             type="checkbox"
-            name="medicine" data-id="1"/><span class="checkdot__marker"></span></label
+            name="medicine" data-id="{{character.medicine}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -591,7 +608,7 @@
             class="checkdot__input"
             id="checkdot-deception"
             type="checkbox"
-            name="deception" data-id="1"/><span class="checkdot__marker"></span></label
+            name="deception" data-id="{{character.deception}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -612,7 +629,7 @@
             class="checkdot__input"
             id="checkdot-nature"
             type="checkbox"
-            name="nature" data-id="1"/><span class="checkdot__marker"></span></label
+            name="nature" data-id="{{character.nature}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -633,7 +650,7 @@
             class="checkdot__input"
             id="checkdot-insight"
             type="checkbox"
-            name="insight" data-id="1"/><span class="checkdot__marker"></span></label
+            name="insight" data-id="{{character.insight}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -654,7 +671,7 @@
             class="checkdot__input"
             id="checkdot-religion"
             type="checkbox"
-            name="religion" data-id="1"/><span class="checkdot__marker"></span></label
+            name="religion" data-id="{{character.religion}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -675,7 +692,7 @@
             class="checkdot__input"
             id="checkdot-stealth"
             type="checkbox"
-            name="stealth" data-id="1"/><span class="checkdot__marker"></span></label
+            name="stealth" data-id="{{character.stealth}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -696,7 +713,7 @@
             class="checkdot__input"
             id="checkdot-persuasion"
             type="checkbox"
-            name="persuasion" data-id="1"/><span class="checkdot__marker"></span></label
+            name="persuasion" data-id="{{character.persuasion}}"/><span class="checkdot__marker"></span></label
         ><button class="roller" type="button">
           <input
             class="char-skill__modifier"
@@ -717,7 +734,7 @@
             class="checkdot__input"
             id="checkdot-animal handling"
             type="checkbox"
-            name="animal handling" data-id="1"/><span
+            name="animal handling" data-id="{{character.animal_handling}}"/><span
             class="checkdot__marker"
           ></span></label
         ><button class="roller" type="button">
@@ -750,7 +767,7 @@
         >
           <path
             d="M23.8494 0.802124L1.86096 12.5092V36.2236L9.39125 50.3321L23.8494 59.0374L38.0063 50.3321L46.139 36.2236V12.5092L23.8494 0.802124Z"
-            fill="#F2F2F0"
+            fill="none"
           ></path>
           <path
             d="M46.8264 12.1484L24.2164 0.13221C23.881 -0.0463404 23.479 -0.0438346 23.1461 0.138475L1.16172 12.1546C0.801164 12.352 0.577545 12.7291 0.577545 13.1395V28.8356C0.590736 41.7383 8.25532 53.4111 20.1084 58.5803L23.1599 59.9066C23.445 60.0306 23.7698 60.0312 24.0556 59.9078L27.494 58.4268C39.5669 53.3697 47.4212 41.5841 47.4225 28.5243V13.1395C47.4225 12.7247 47.1932 12.3432 46.8264 12.1484ZM45.921 28.5C45.9185 40.6596 38.2441 52.2944 27.0029 57L23.6109 58.2L20.6968 57C9.66353 52.1885 2.09155 41.3562 2.07899 29.3457V13.2L23.6997 1.5L45.921 13.2V28.5Z"
@@ -761,7 +778,7 @@
           type="number"
           class="vitality-block__box-value vitality-block__shield-input char-sheet__input"
           autocomplete="off"
-          value="10"
+          value="{{character.armor_class}}"
         />
         <p class="char-sheet__label centered min">КЗ</p>
       </div>
@@ -772,7 +789,8 @@
             type="text"
             class="vitality-block__box-value char-sheet__input"
             autocomplete="off"
-            value="+0"
+            value="{{character.armor_class}}"
+            id="initiative"
           />
         </button>
         <p class="char-sheet__label centered min">Инициатива</p>
@@ -783,7 +801,8 @@
           type="text"
           class="vitality-block__box-value char-sheet__input"
           autocomplete="off"
-          value=""
+          value="{{character.speed}}"
+          id="speed"
         />
         <p class="char-sheet__label centered min">Скорость</p>
       </div>
@@ -795,14 +814,20 @@
             type="number"
             class="vitality-block__input vitality-block__hp-max char-sheet__input"
             autocomplete="off"
-            value="" /></label
+            value="{{character.max_hp}}" /></label
         ><input
           id="vitality-current"
           name="hp-current"
           type="text"
           class="vitality-block__hp-input char-sheet__input"
           autocomplete="off"
-          value=""
+          {% if character.current_hp is none %}
+            value=""
+          {% else %}
+            value="{{ character.current_hp }}"
+          {% endif %}
+        
+          
         />
         <p class="char-sheet__label centered">Текущие хиты</p>
       </div>
@@ -813,7 +838,7 @@
           type="number"
           class="vitality-block__hp-input char-sheet__input"
           autocomplete="off"
-          value=""
+          value="{{character.temporary_hp}}"
         />
         <p class="char-sheet__label centered">Временные хиты</p>
       </div>
@@ -826,7 +851,7 @@
               type="text"
               class="vitality-block__input vitality-block__hp-max char-sheet__input"
               autocomplete="off"
-              value="" /></label
+              value="{{character.total_bone_of_hit}}" /></label
           ><button class="roller" type="button">
             <input
               id="vitality-die"
@@ -834,7 +859,7 @@
               type="text"
               class="vitality-block__hp-input small char-sheet__input"
               autocomplete="off"
-              value=""
+              value="{{character.bone_of_hit}}"
             />
           </button>
           <p class="char-sheet__label centered min">Кость хитов</p>
@@ -849,7 +874,9 @@
                     class="checkdot__input"
                     id="checkdot-deathSuccess_0"
                     type="checkbox"
-                    name="deathSuccess_0" /><span
+                    name="deathSuccess_0" 
+                    check="{{character.success1}}"
+                    /><span
                     class="checkdot__marker"
                   ></span></label></span
               ><span class="vitality-block__death-circle"
@@ -858,7 +885,9 @@
                     class="checkdot__input"
                     id="checkdot-deathSuccess_1"
                     type="checkbox"
-                    name="deathSuccess_1" /><span
+                    name="deathSuccess_1" 
+                    {{character.success2}}
+                    /><span
                     class="checkdot__marker"
                   ></span></label></span
               ><span class="vitality-block__death-circle"
@@ -867,7 +896,9 @@
                     class="checkdot__input"
                     id="checkdot-deathSuccess_2"
                     type="checkbox"
-                    name="deathSuccess_2" /><span
+                    name="deathSuccess_2" 
+                    {{character.success3}}
+                    /><span
                     class="checkdot__marker"
                   ></span></label
               ></span>
@@ -882,7 +913,9 @@
                     class="checkdot__input"
                     id="checkdot-deathFail_0"
                     type="checkbox"
-                    name="deathFail_0" /><span
+                    name="deathFail_0" 
+                    {{character.failure1}}
+                    /><span
                     class="checkdot__marker"
                   ></span></label></span
               ><span class="vitality-block__death-circle"
@@ -891,7 +924,9 @@
                     class="checkdot__input"
                     id="checkdot-deathFail_1"
                     type="checkbox"
-                    name="deathFail_1" /><span
+                    name="deathFail_1" 
+                    {{character.failure2}}
+                    /><span
                     class="checkdot__marker"
                   ></span></label></span
               ><span class="vitality-block__death-circle"
@@ -900,7 +935,9 @@
                     class="checkdot__input"
                     id="checkdot-deathFail_2"
                     type="checkbox"
-                    name="deathFail_2" /><span
+                    name="deathFail_2" 
+                    {{character.failure3}}
+                    /><span
                     class="checkdot__marker"
                   ></span></label
               ></span>
@@ -913,7 +950,7 @@
     </div>
     <div class="char-sheet__Attacks_and_Spells">
       
-      <textarea class="char-sheet__Attacks_and_Spells__textarea" name="" id="Attacks_and_Spells"></textarea>
+      <textarea class="text__textarea" name="" id="Attacks_and_Spells" autocomplete="off" value="" autocomplete="off">{{character.attacks_and_spells}}</textarea>
       <label for="#"><p>Атаки и заклинания</p></label>
     </div>
     <div class="char-sheet__equipment-wrapper">
@@ -925,7 +962,8 @@
             type="number"
             class="coins-block__input char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.copper_coins}}"
+            id = "cc"
           />
         </div>
         <div class="coins-block__coin">
@@ -935,7 +973,8 @@
             type="number"
             class="coins-block__input char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.silver_coins}}"
+            id="sc"
           />
         </div>
         <div class="coins-block__coin">
@@ -945,7 +984,8 @@
             type="number"
             class="coins-block__input char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.gold_coins}}"
+            id="gc"
           />
         </div>
         <div class="coins-block__coin">
@@ -955,7 +995,8 @@
             type="number"
             class="coins-block__input char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.electrum_coins}}"
+            id="ec"
           />
         </div>
         <div class="coins-block__coin">
@@ -965,7 +1006,8 @@
             type="number"
             class="coins-block__input char-sheet__input"
             autocomplete="off"
-            value=""
+            value="{{character.platinum_coins}}"
+            id="pc"
           />
         </div>
 
@@ -973,7 +1015,7 @@
       </form>
       <div class="char-sheet__equipment-wrapper__textarea_block">
         
-        <textarea class="char-sheet__equipment-wrapper__textarea_block__textarea" name="" id="char-sheet__equipment-wrapper"></textarea>
+        <textarea class="text__textarea" name="" id="char-sheet__equipment-wrapper" autocomplete="off">{{character.equipment}}</textarea>
         <label for="#"><p>Снаряжение</p></label>
       </div>
     </div>
@@ -982,27 +1024,27 @@
   <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities">
     <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
       <label for="#"><p>Черты характера</p></label>
-      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Character-Traits"></textarea>
+      <textarea class="text__textarea" autocomplete="off" name="" id="Character-Traits" value="">{{character.character_traits}}</textarea>
       
     </div>
     <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
       <label for="#"><p>Идеалы</p></label>
-      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Ideals"></textarea>
+      <textarea class="text__textarea" autocomplete="off" name="" id="Ideals" value="">{{character.ideals}}</textarea>
       
     </div>
     <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
       <label for="#"><p>Привязанности</p></label>
-      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Affections"></textarea>
+      <textarea class="text__textarea" autocomplete="off" name="" id="Affections" value="">{{character.attachments}}</textarea>
     </div>
 
     <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
       <label for="#"><p>Слабости</p></label>
-      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Weaknesses"></textarea>
+      <textarea class="text__textarea" autocomplete="off" name="" id="Weaknesses" value="">{{character.weaknesses}}</textarea>
     </div>
 
     <div class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block">
       
-      <textarea class="Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea" name="" id="Skills-and-abilities"></textarea>
+      <textarea class="text__textarea" autocomplete="off" name="" id="Skills-and-abilities" value="">{{character.skills_and_abilities}}</textarea>
       <label for="#"><p>Умения и способности</p></label>
     </div>
   </div>
@@ -1014,7 +1056,138 @@
   <div id="information"></div>
   <div id="comments"></div>
 </div>
+<div id="character_id" style="display:none">{{character.id}}</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src=" {% static "js/characteristics/scripts.js" %} ">  </script>
+<div class="directory__container">
+  <div class="icon__container">
+    <div class="armor" id="armor">
+      <svg viewBox="0 0 512 512" width="1.5em" height="1.5em" class="h-14 w-14 p-1" id="armor">
+        <path id="armor" fill="#e8e6e3" d="M260.375 19.656c-38.78 0-73.995 3.935-100.5 12.407c-13.253 4.235-24.39 9.556-32.813 16.78c-8.42 7.226-14.124 17.087-14.124 28.094c0 4.472.917 8.784 2.53 12.876c3.433 52.216-35.145 118.26-77.28 151.406c9.894 50.565 32.645 102.465 66.53 149.81c39.964 32.405 91.668 49.857 144.282 52.314v-33.75c-16.175-.15-31.88-.668-44.5-1.594l1.375-18.625c11.96.878 27.288 1.356 43.125 1.5V350.97c-15.294.57-29.984 2.542-41.063 5.936l-5.5-17.875c13.523-4.142 29.83-6.512 46.563-7.155v-33.5c-4.892.263-9.767.762-14.594 1.438c-28.855 1.45-53.472 5.125-75.906 10.593l-.22-.28c28.03-20.89 64.05-31.314 100.064-31.313c36.015 0 72.034 10.425 100.062 31.312l-.125.188c-22.516-5.463-47.247-9.113-76.25-10.532c-4.746-.656-9.533-1.148-14.342-1.405v33.5c16.734.643 33.04 3.013 46.562 7.156l-5.47 17.876c-11.084-3.396-25.787-5.366-41.092-5.937v39.905c15.843-.144 31.16-.622 43.125-1.5L312.188 408c-12.627.927-28.317 1.445-44.5 1.594v34c54.5-1.12 108.566-18.29 150.187-51.47c35.375-47.383 58.567-98.53 68.5-148.405c-43.943-32.66-85.096-102.138-80.344-156c1.132-3.463 1.75-7.065 1.75-10.782c0-11.008-5.67-20.87-14.092-28.094c-8.422-7.225-19.59-12.546-32.844-16.782c-26.506-8.47-61.687-12.406-100.47-12.406zm0 18.688c37.48 0 71.312 4.03 94.78 11.53c11.736 3.752 20.793 8.394 26.345 13.157c5.552 4.765 7.594 8.92 7.594 13.907c0 2.495-.582 5.05-1.875 7.688c-36.805-16.793-82.838-25.218-128.876-25.22c-44.633 0-89.28 7.903-125.5 23.69c-.83-2.1-1.22-4.145-1.22-6.157c0-4.99 2.042-9.143 7.595-13.907c5.55-4.762 14.608-9.404 26.343-13.155c23.47-7.5 57.334-11.53 94.812-11.53zm-2.03 40.468c41.273 0 82.56 6.716 115.186 20.188c-5.193 3.626-11.645 7.13-19.155 10.28c-23.424 9.827-56.93 16.22-94 16.22s-70.607-6.393-94.03-16.22c-8.22-3.446-15.152-7.322-20.564-11.31c32.202-12.77 72.385-19.16 112.563-19.158zm-35.908 63.25a318.866 318.866 0 0 0 19.22 1.625c.814 5.004 1.705 10.514 2.624 16.688c2.72 18.253 5.47 39.27 5.47 52.875c0 15.196-5.87 28.974-16.03 39.594c-10.163 10.62-24.316 18.284-41.25 23.28c-18.763 5.537-41.102 7.852-66.032 6.72c-23.82-3.486-42.194-13.06-59.97-27.656c48.897 11.737 91.53 11.613 120.72 3c14.638-4.32 25.797-10.72 33.03-18.282c7.235-7.56 10.845-16.048 10.845-26.656c0-10.86-2.608-32.175-5.282-50.125a1238.208 1238.208 0 0 0-3.343-21.063zm71.688.47c-.946 5.705-2.108 12.72-3.28 20.593c-2.675 17.95-5.283 39.265-5.283 50.125c0 10.608 3.61 19.096 10.844 26.656c7.234 7.56 18.393 13.962 33.03 18.28c29.11 8.59 71.588 8.735 120.314-2.905c-17.762 14.562-36.125 24.13-59.938 27.595c-24.778 1.092-46.988-1.242-65.656-6.75c-16.935-4.997-31.088-12.66-41.25-23.28c-10.162-10.62-16.03-24.4-16.03-39.595c0-13.606 2.78-34.622 5.5-52.875c.905-6.08 1.788-11.517 2.593-16.47a324.432 324.432 0 0 0 19.155-1.374zm121.25 274.655c-88.88 60.702-217.204 60.827-306.25.375l-2.375 39.188c6.073 8.603 23.877 18.598 49.406 25.094c27.31 6.95 62.423 10.798 98.313 11.125c35.888.326 72.623-2.834 103.374-9.47c28.162-6.078 51.078-15.495 63.47-26.03l-5.94-40.283z"></path>
+      </svg>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Доспех</th>
+            <th>Стоимость</th>
+            <th>Класс доспеха (КД)</th>
+            <th>Сила</th>
+            <th>Скрытность</th>
+            <th>Вес</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Лёгкий доспех -->
+          <tr><th colspan="6">Лёгкий доспех</th></tr>
+          <tr><td>Стёганый</td><td>5 зм.</td><td>11 + ЛОВ</td><td>-</td><td>Помеха</td><td>8 фнт.</td></tr>
+          <tr><td>Кожаный</td><td>10 зм.</td><td>11 + ЛОВ</td><td>-</td><td>-</td><td>10 фнт.</td></tr>
+          <tr><td>Проклёпанный кожаный</td><td>45 зм.</td><td>12 + ЛОВ</td><td>-</td><td>-</td><td>13 фнт.</td></tr>
+      
+          <!-- Средний доспех -->
+          <tr><th colspan="6">Средний доспех</th></tr>
+          <tr><td>Шкурный</td><td>10 зм.</td><td>12 + ЛОВ (макс. 2)</td><td>-</td><td>-</td><td>12 фнт.</td></tr>
+          <tr><td>Кольчужная рубаха</td><td>50 зм.</td><td>13 + ЛОВ (макс. 2)</td><td>-</td><td>-</td><td>20 фнт.</td></tr>
+          <tr><td>Чешуйчатый</td><td>50 зм.</td><td>14 + ЛОВ (макс. 2)</td><td>-</td><td>Помеха</td><td>45 фнт.</td></tr>
+          <tr><td>Кираса</td><td>400 зм.</td><td>14 + ЛОВ (макс. 2)</td><td>-</td><td>-</td><td>20 фнт.</td></tr>
+          <tr><td>Полулаты</td><td>750 зм.</td><td>15 + ЛОВ (макс. 2)</td><td>-</td><td>Помеха</td><td>40 фнт.</td></tr>
+      
+          <!-- Тяжёлый доспех -->
+          <tr><th colspan="6">Тяжёлый доспех</th></tr>
+          <tr><td>Колечный</td><td>30 зм.</td><td>14</td><td>-</td><td>Помеха</td><td>40 фнт.</td></tr>
+          <tr><td>Кольчуга</td><td>75 зм.</td><td>16</td><td>13</td><td>Помеха</td><td>55 фнт.</td></tr>
+          <tr><td>Наборный</td><td>200 зм.</td><td>17</td><td>15</td><td>Помеха</td><td>60 фнт.</td></tr>
+          <tr><td>Латы</td><td>1 500 зм.</td><td>18</td><td>15</td><td>Помеха</td><td>65 фнт.</td></tr>
+      
+          <!-- Щиты -->
+          <tr><th colspan="6">Щиты</th></tr>
+          <tr><td>Щит</td><td>10 зм.</td><td>+2</td><td>-</td><td>-</td><td>6 фнт.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="weppons" id="weppons">
+      <svg viewBox="0 0 512 512" width="1.5em" height="1.5em" class="h-14 w-14 p-1" id="weppons">
+        <path id="weppons" fill="#e8e6e3" d="M61.85 19.51c-15.08-.07-30.16 2.37-45.2 7.64C77.61 52.92 136.1 109.7 193.1 176.8l60.3-40.1C192.4 67.49 127.2 19.84 61.85 19.51zM442 32.08L109.9 252.7C90 265.9 70.45 268.9 53.86 267c-12.28-1.4-22.98-5.3-31.77-9.6c-4.18 11.3-3.73 21-.16 27.5c4.67 8 14.54 13.6 35.43 10.7l22.8-3.2l-14.01 18.1c-27.23 35.3-43.29 105 7.58 167.4c10.57 12.7 22.97 18 36.27 18.9c13.1 1 27-3 38.2-9.9c11.2-6.8 19.3-16.3 22.2-25.1c2.9-9 1.7-16.6-7.6-25.6c-14.4-13.9-29.1-29.4-37-47.8c23.3-15.2 42.8-29.4 54.1-46.8c5.9-9.2 9.3-19.8 8.8-30.9c-.6-11.1-4.8-22.3-12.4-34.2c95.2-68 199.2-130 296.4-197.68zM309.6 207.9l-59.5 39.2c26.7 34.1 53.2 69 79.6 102.4c-14.7 12.4-28.6 17.5-37.5 16.7l-1.6 18.6c19.7 1.7 41-9.7 61.3-30.4c21.9-22.4 44.7-28.1 65.2-24.7c20.5 3.5 38.9 16.8 49.6 34.2c10.7 17.5 13.7 38.3 4.7 58.1c-9 19.9-30.8 39.7-73.1 52.7l5.4 17.8c45.8-14 72.9-36.8 84.7-62.7c11.8-25.9 7.7-53.8-5.8-75.6c-13.4-21.9-36-38.5-62.4-42.9c-13-2.2-26.9-1.2-40.6 3.4c-22.1-36.7-45.5-73-70-106.8zm-148.1 80.2c5.7 9.3 8.1 17 8.5 23.6c.3 7-1.5 13.2-5.8 19.8c-7.7 11.9-23.4 24.2-44.1 38.2c-.3-2.2-.5-4.4-.6-6.8c-1.1-23.6 11-48.7 42-74.8zm223 65c-6.6 3-13.4 7.4-20.2 13.6c8.6 26.1 36.2 62.1 60.3 77.1c8.6-4.9 15.2-10.3 20.1-16c-8.9-25.8-37.4-59.9-60.2-74.7z"></path>
+      </svg>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Стоимость</th>
+            <th>Урон</th>
+            <th>Вес</th>
+            <th>Свойства</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Простое рукопашное оружие -->
+          <tr><th colspan="5">Простое рукопашное оружие</th></tr>
+          <tr><td>Боевой посох</td><td>2 см</td><td>1к6 дробящий</td><td>4 фнт.</td><td>Универсальное (1к8)</td></tr>
+          <tr><td>Булава</td><td>5 зм</td><td>1к6 дробящий</td><td>4 фнт.</td><td>-</td></tr>
+          <tr><td>Дубинка</td><td>1 см</td><td>1к4 дробящий</td><td>2 фнт.</td><td>Лёгкое</td></tr>
+          <tr><td>Кинжал</td><td>2 зм</td><td>1к4 колющий</td><td>1 фнт.</td><td>Лёгкое, метательное (дис. 20/60), фехтовальное</td></tr>
+          <tr><td>Копьё</td><td>1 зм</td><td>1к6 колющий</td><td>3 фнт.</td><td>Метательное (дис. 20/60), универсальное (1к8)</td></tr>
+          <tr><td>Лёгкий молот</td><td>2 зм</td><td>1к4 дробящий</td><td>2 фнт.</td><td>Лёгкое, метательное (дис. 20/60)</td></tr>
+          <tr><td>Метательное копьё</td><td>5 см</td><td>1к6 колющий</td><td>2 фнт.</td><td>Метательное (дис. 30/120)</td></tr>
+          <tr><td>Палица</td><td>2 см</td><td>1к8 дробящий</td><td>10 фнт.</td><td>Двуручное</td></tr>
+          <tr><td>Ручной топор</td><td>5 зм</td><td>1к6 рубящий</td><td>2 фнт.</td><td>Лёгкое, метательное (дис. 20/60)</td></tr>
+          <tr><td>Серп</td><td>1 зм</td><td>1к4 рубящий</td><td>2 фнт.</td><td>Лёгкое</td></tr>
+          
+          <!-- Простое дальнобойное оружие -->
+          <tr><th colspan="5">Простое дальнобойное оружие</th></tr>
+          <tr><td>Арбалет, лёгкий</td><td>25 зм</td><td>1к8 колющий</td><td>5 фнт.</td><td>Боеприпас (дис. 80/320), двуручное, перезарядка</td></tr>
+          <tr><td>Дротик</td><td>5 мм</td><td>1к4 колющий</td><td>1/4 фнт.</td><td>Метательное (дис. 20/60), фехтовальное</td></tr>
+          <tr><td>Короткий лук</td><td>25 зм</td><td>1к6 колющий</td><td>2 фнт.</td><td>Боеприпас (дис. 80/320), двуручное</td></tr>
+          <tr><td>Праща</td><td>1 см</td><td>1к4 дробящий</td><td>-</td><td>Боеприпас (дис. 30/120)</td></tr>
+          
+          <!-- Воинское рукопашное оружие -->
+          <tr><th colspan="5">Воинское рукопашное оружие</th></tr>
+          <tr><td>Алебарда</td><td>20 зм</td><td>1к10 рубящий</td><td>6 фнт.</td><td>Двуручное, досягаемость, тяжёлое</td></tr>
+          <tr><td>Боевая кирка</td><td>5 зм</td><td>1к8 колющий</td><td>2 фнт.</td><td>-</td></tr>
+          <tr><td>Боевой молот</td><td>15 зм</td><td>1к8 дробящий</td><td>2 фнт.</td><td>Универсальное (1к10)</td></tr>
+          <tr><td>Боевой топор</td><td>10 зм</td><td>1к8 рубящий</td><td>4 фнт.</td><td>Универсальное (1к10)</td></tr>
+          <tr><td>Глефа</td><td>20 зм</td><td>1к10 рубящий</td><td>6 фнт.</td><td>Двуручное, досягаемость, тяжёлое</td></tr>
+          <tr><td>Двуручный меч</td><td>50 зм</td><td>2к6 рубящий</td><td>6 фнт.</td><td>Двуручное, тяжёлое</td></tr>
+          <tr><td>Длинное копьё</td><td>10 зм</td><td>1к12 колющий</td><td>6 фнт.</td><td>Досягаемость, особое</td></tr>
+          <tr><td>Длинный меч</td><td>15 зм</td><td>1к8 рубящий</td><td>3 фнт.</td><td>Универсальное (1к10)</td></tr>
+          <tr><td>Кнут</td><td>2 зм</td><td>1к4 рубящий</td><td>3 фнт.</td><td>Досягаемость, фехтовальное</td></tr>
+          <tr><td>Короткий меч</td><td>10 зм</td><td>1к6 колющий</td><td>2 фнт.</td><td>Лёгкое, фехтовальное</td></tr>
+          <tr><td>Молот</td><td>10 зм</td><td>2к6 дробящий</td><td>10 фнт.</td><td>Двуручное, тяжёлое</td></tr>
+          <tr><td>Моргенштерн</td><td>15 зм</td><td>1к8 колющий</td><td>4 фнт.</td><td>-</td></tr>
+          <tr><td>Пика</td><td>5 зм</td><td>1к10 колющий</td><td>18 фнт.</td><td>Двуручное, досягаемость, тяжёлое</td></tr>
+          <tr><td>Рапира</td><td>25 зм</td><td>1к8 колющий</td><td>2 фнт.</td><td>Фехтовальное</td></tr>
+          <tr><td>Секира</td><td>30 зм</td><td>1к12 рубящий</td><td>7 фнт.</td><td>Двуручное, тяжёлое</td></tr>
+          <tr><td>Скимитар</td><td>25 зм</td><td>1к6 рубящий</td><td>3 фнт.</td><td>Лёгкое, фехтовальное</td></tr>
+          <tr><td>Трезубец</td><td>5 зм</td><td>1к6 колющий</td><td>4 фнт.</td><td>Метательное (дис. 20/60), универсальное (1к8)</td></tr>
+          <tr><td>Цеп</td><td>10 зм</td><td>1к8 дробящий</td><td>2 фнт.</td><td>-</td></tr>
+      
+          <!-- Воинское дальнобойное оружие -->
+          <tr><th colspan="5">Воинское дальнобойное оружие</th></tr>
+          <tr><td>Арбалет, ручной</td><td>75 зм</td><td>1к6 колющий</td><td>3 фнт.</td><td>Боеприпас (дис. 30/120), лёгкое, перезарядка</td></tr>
+          <tr><td>Арбалет, тяжёлый</td><td>50 зм</td><td>1к10 колющий</td><td>18 фнт.</td><td>Боеприпас (дис. 100/400), двуручное, перезарядка, тяжёлое</td></tr>
+          <tr><td>Длинный лук</td><td>50 зм</td><td>1к8 колющий</td><td>2 фнт.</td><td>Боеприпас (дис. 150/600), двуручное, тяжёлое</td></tr>
+          <tr><td>Духовая трубка</td><td>10 зм</td><td>1 колющий</td><td>1 фнт.</td><td>Боеприпас (дис. 25/100), перезарядка</td></tr>
+          <tr><td>Сеть</td><td>1 зм</td><td>-</td><td>3 фнт.</td><td>Метательное (дис. 5/15), особое</td></tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <div class="directory" id="directory">
+      <svg viewBox="0 0 512 512" width="1.5em" height="1.5em" class="h-14 w-14 p-1" id="directory">
+        <path id="directory" fill="currentColor" d="M149.688 85.625c-1.234.005-2.465.033-3.72.063c-33.913.806-75.48 10.704-127.25 33.718V362.78c60.77-28.82 106.718-37.067 144.22-33.092c33.502 3.55 59.685 16.66 83.562 31.187v-242.97c-23.217-17.744-50.195-30.04-85.97-32a184.47 184.47 0 0 0-10.843-.28zm211.968 0c-3.7-.016-7.322.088-10.844.28c-35.773 1.96-62.75 14.256-85.968 32v242.97c23.876-14.527 50.06-27.637 83.562-31.188c37.502-3.974 83.45 4.272 144.22 33.094V119.407c-51.77-23.014-93.337-32.912-127.25-33.72c-1.255-.028-2.486-.056-3.72-.06zm5.72 261.78c-1.038-.002-2.074.017-3.095.033c-4.808.075-9.43.37-13.905.843c-33.932 3.597-59.603 17.976-85.53 34.44v.28c-6.554-1.99-13.02-2.37-19.408-.97c-25.566-16.177-51.003-30.202-84.468-33.75c-5.595-.592-11.44-.883-17.564-.842c-32.04.213-71.833 9.778-124.687 35.937v42.53c60.77-28.823 106.714-37.067 144.218-33.092c18.545 1.965 34.837 6.845 49.75 13.28c-4.682 6.064-9.308 13.268-13.875 21.688h117.156c-5.93-8.22-11.798-15.414-17.626-21.56c14.996-6.503 31.39-11.43 50.062-13.408c37.503-3.974 83.448 4.27 144.22 33.094v-42.53c-53.16-26.31-93.115-35.863-125.25-35.97z"></path>
+      </svg>
+
+      <iframe src="https://5e.ruleplaying.com/" frameborder="0"></iframe>
+    </div>
+  </div>
+  
+
+  <div class="information__container">
+
+    
+  </div>
+</div>
+
 {% endblock content %}
+{% block footer %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src=" {% static "js/characteristics/scripts.js" %} ">  </script>
+{% endblock footer %}

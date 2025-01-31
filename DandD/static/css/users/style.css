@@ -1,43 +1,46 @@
-.authentication {
+body {
+    box-sizing: border-box;
+    width: 100%;
     font-family: Arial, sans-serif;
-    color: white;
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
 
+
 .authentication-form__container {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px 40px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    width: 400px;
     text-align: center;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    padding-bottom: 30px;
 }
 
 .authentication__title {
     font-size: 24px;
     margin-bottom: 10px;
+    color: #333;
+    
 }
-
 
 .authentication__form__input {
     margin-bottom: 15px;
     text-align: left;
+    margin: 20px 40px;
+    
 }
 
-
 .authentication__form__input input, select {
-    width: 100%;
     padding: 10px;
     font-size: 14px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
+    background-color: #ffffff;
+    color: #333;
+    width: 400px;
 }
 
 .authentication__form__input input, select, textarea {
@@ -46,25 +49,50 @@
 }
 
 .authentication__form__input input:focus, select:focus, textarea:focus {
-    outline: none;
-    box-shadow: none;
+    border: 1px solid #979797;
 }
 
 .authentication__btn {
-    font-size: 24px;
-    width: 105%;
-    padding: 12px;
     font-size: 16px;
+    padding: 12px;
     border: none;
     border-radius: 4px;
-    background-color: #ffc14e;
+    background-color: #B99274;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 83.9%;
+    
 }
 
 .authentication__btn:hover {
-    background-color: #ffb62e;
+    background-color: #ac886d;
 }
 
+body.dark-theme .authentication-form__container {
+    background-color: #1b1e1f;
+}
 
+body.dark-theme .authentication__title {
+    color: #c8c3bc;
+}
+
+body.dark-theme .authentication__form__input input, select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #3e4446;
+    border-radius: 4px;
+    background-color: #181a1b;
+    color: #65635e;
+    width: 400px;
+}
+
+body.dark-theme .authentication__btn {
+    background-color: #75543b;
+    color: #e8e6e3;
+}
+
+body.dark-theme .authentication__btn:hover {
+    background-color: #8a6346;
+    color: #e8e6e3;
+}

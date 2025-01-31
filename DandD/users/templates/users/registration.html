@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/users/style.css' %}">
 {% endblock head %}
 {% block content %}
-    <body class="authentication">
+    <body>
         <div class="authentication-form__container">
             <h1 class="authentication__title">Зарегистрироваться</h1>
             <form action="{% url 'users:registration' %}" method="post">

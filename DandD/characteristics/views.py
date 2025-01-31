@@ -1,17 +1,22 @@
+import json
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 import requests
 from bs4 import BeautifulSoup as bs
 from rest_framework import viewsets
 from .models import Characteristics
-from .serializers import CharacteristicsSerializer
+from .forms import CharacterForm
+from django.views.decorators.csrf import requires_csrf_token
 
+def characteristics_page(request, id):
+    try:
+        character = Characteristics.objects.get(id=id)  # Замените id на нужное
+    except Characteristics.DoesNotExist:
+        return JsonResponse({"error": "Character not found"}, status=404)
+    
+    return render(request, 'characteristics/index.html', {'character': character})
 
-class CharacteristicsViewSet(viewsets.ModelViewSet):
-    queryset = Characteristics.objects.all()
-    serializer_class = CharacteristicsSerializer
-
-def characteristics_page(request):
+def characteristics_information_block(request):
     context = {
         'information_ul': None,
         'comments_str': None,
@@ -35,19 +40,23 @@ def characteristics_page(request):
         # Возвращаем ответ в формате JSON
         return JsonResponse(context)
     
-    return render(request, 'characteristics/index.html', context)
+    return JsonResponse(context)
+
+@requires_csrf_token
+def send_characteristics_tomodel(request, id):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        character = get_object_or_404(Characteristics, id=id)
+
+        # Передаем данные и экземпляр модели в форму
+        form = CharacterForm(data, instance=character)
+
+        
+        character = form.save()  # Сохраняем изменения
+        return JsonResponse({"status": "Ok",})
 
 
+        # В случае ошибки
+        return JsonResponse({"status": "error",})
+    return JsonResponse({"status": "error", "message": "Некорректный запрос."})
 
-
-# def characteristics_information_block(request):
-#     if request.method == "POST":
-#         # Указание ключа 'text' для метода get
-#         text = request.POST.get('text')  # получаем данные из запроса
-#         context = {
-#             'text': text,
-#         }
-#     else:
-#         context = {'text': 'default_text'}  # значение по умолчанию, если не POST запрос
-
-#     return render(request, 'characteristics/index.html', context)

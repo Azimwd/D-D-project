@@ -1,0 +1,97 @@
+.container__charcters{
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 70%;
+    height: 63dvh;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.col-sm-6{
+    margin-bottom: 20pt;
+}
+
+
+.btn.btn-primary{
+    background-color: transparent;
+    color: #272320;
+    border-color: #4c453f;
+    margin-top: 1rem;
+}
+
+
+.btn.btn-primary:hover{
+    background-color: #272320;
+    color: #F2F2F0;
+    border-color: #4c453f;
+}
+
+
+
+p{
+    margin-bottom: 0rem;
+}
+
+.add__character{
+    margin-top: 5%;
+    margin-left: 81.9%;
+    position: absolute;
+    cursor: pointer;
+    color: #4c453f;
+}
+.add__character:hover{
+    color: black;
+}
+
+.delite_btn{
+    cursor: pointer;
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: black;
+}
+
+body.dark-theme .delite_btn{
+    cursor: pointer;
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+}
+
+body.dark-theme .btn.btn-primary{
+    background-color: transparent;
+    color: #bbbbbb;
+    border-color: #4c453f;
+}
+
+body.dark-theme .btn.btn-primary:hover{
+    background-color: #161616;
+    color: white;
+    /* border-color: white; */
+}
+
+body.dark-theme .add__character{
+    margin-top: 5%;
+    margin-left: 81.9%;
+    position: absolute;
+    cursor: pointer;
+    color: #ffffff;
+}
+body.dark-theme .add__character:hover{
+    color: rgb(223, 222, 222);;
+}
+
+body.dark-theme .card{
+    border-color: #2c2c29;
+}
+
+body.dark-theme .card-body{
+    color: #e8e6e3;
+    background-color: #131516;
+}
+

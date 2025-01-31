@@ -2,12 +2,11 @@
   box-sizing: inherit;
 }
 
-.stats-list{
-  /* border: 1px solid black; */
+.stats-list {
   width: 700pt;
   height: 800pt;
   position: absolute;
-  top: 70%;
+  margin-top: 40rem;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -46,7 +45,7 @@
 
 .char-sheet__info {
   border: 1pt solid #6E4E39;
-  background-color: #F2F2F0;
+  background-color: transparent;
   border-radius: 2pt;
   flex: 1 1;
   padding: 4pt 10pt;
@@ -75,6 +74,7 @@
   padding: 0;
   width: 100%;
   color: #6E4E39;
+  outline: none;
 }
 
 input {
@@ -89,10 +89,6 @@ input {
   left: 0;
   position: absolute;
   transform: translateY(100%);
-}
-
-p :last-child {
-  margin-bottom: 0;
 }
 
 .char-sheet__label {
@@ -140,7 +136,7 @@ p :last-child {
 }
 
 .stat-block {
-  background: #F2F2F0;
+  background: transparent;
   border: 1pt solid black;
   border-radius: 2pt 2pt 0 0;
   margin-bottom: 16pt;
@@ -205,6 +201,7 @@ button {
   padding: 1pt 4pt;
   text-align: center;
   width: 24pt;
+  outline: none;
 }
 
 .Othe__Proficiencies__and__Languages__textarea_block{
@@ -264,7 +261,7 @@ button {
 .modifier-block__modifier {
   align-items: center;
   background: #F2F2F0;
-  border: 2pt solid #6E4E39;
+  border: 2pt solid black;
   border-radius: 3pt;
   display: flex;
   height: 28pt;
@@ -286,7 +283,7 @@ p {
 
 p :last-child {
   margin-bottom: 0;
-  background-color: #F2F2F0;
+  background-color: transparent;
 }
 .inspiration {
   align-items: center;
@@ -297,9 +294,6 @@ p :last-child {
   width: 100%;
 }
 
-p :last-child {
-  margin-bottom: 0;
-}
 .inspiration__check {
   display: none;
 }
@@ -382,20 +376,8 @@ button, input, optgroup, select, textarea {
 
 .modifier-block__modifier.round {
   border-radius: 50%;
-  background-color: #F2F2F0;
 }
-.modifier-block__modifier {
-  align-items: center;
-  background: #F2F2F0;
-  border: 2pt solid #6E4E39;
-  border-radius: 3pt;
-  display: flex;
-  height: 28pt;
-  justify-content: center;
-  margin: 0;
-  position: relative;
-  width: 28pt;
-}
+
 p {
   margin-left: 0;
   margin-right: 0;
@@ -497,7 +479,6 @@ input {
 }
 
 .checkdot__marker {
-  background: #fff;
   border: 1pt solid #4c453f;
   border-radius: 50%;
   cursor: pointer;
@@ -655,20 +636,8 @@ block__controls-button:first-of-type {
 .modifier-block__modifier.ellipsis {
   border-radius: 20pt;
   height: 24pt;
-  background-color: #F2F2F0;
 }
-.modifier-block__modifier {
-  align-items: center;
-  background: #fff;
-  border: 2pt solid #000;
-  border-radius: 3pt;
-  display: flex;
-  height: 28pt;
-  justify-content: center;
-  margin: 0;
-  position: relative;
-  width: 28pt;
-}
+
 p {
   margin-left: 0;
   margin-right: 0;
@@ -769,7 +738,8 @@ button, input, optgroup, select, textarea {
 
 .vitality-block {
   align-items: center;
-  background: #eaeaea;
+  /* background: #1d1f20; */
+  background: rgb(234, 234, 234);
   border-radius: 8pt;
   display: flex;
   flex-wrap: wrap;
@@ -784,17 +754,7 @@ button, input, optgroup, select, textarea {
   height: 48pt;
   margin-left: -3pt;
 }
-.vitality-block__box {
-  background: #fff;
-  border: 1pt solid #000;
-  border-radius: 4pt;
-  display: flex;
-  flex-direction: column;
-  height: 40pt;
-  justify-content: center;
-  position: relative;
-  width: 44pt;
-}
+
 
 svg:not(:root) {
   overflow: hidden;
@@ -811,11 +771,11 @@ svg:not(:root) {
   -moz-appearance: textfield;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .vitality-block__shield-input, .vitality-block__shield-input + .char-sheet__label {
     color: #4c453f !important;
   }
-}
+} */
 .vitality-block__shield-input {
   margin-left: auto;
   margin-right: auto;
@@ -835,11 +795,6 @@ input {
 .char-sheet__label.min {
   font-size: 5pt;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
 
 .vitality-block__box .char-sheet__label {
   font-size: 5pt;
@@ -851,11 +806,7 @@ input {
 .char-sheet__label.min {
   font-size: 5pt;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__label {
   font-family: Open Sans,sans-serif;
   font-size: 6pt;
@@ -882,7 +833,6 @@ p {
 }
 
 .vitality-block__box {
-  background: #F2F2F0;
   border: 1pt solid #000;
   border-radius: 4pt;
   display: flex;
@@ -970,11 +920,7 @@ button, input, optgroup, select, textarea {
 .char-sheet__label.min {
   font-size: 5pt;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .vitality-block__box .char-sheet__label {
   font-size: 5pt;
   position: relative;
@@ -985,11 +931,7 @@ button, input, optgroup, select, textarea {
 .char-sheet__label.min {
   font-size: 5pt;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__label {
   font-family: Open Sans,sans-serif;
   font-size: 6pt;
@@ -1005,14 +947,6 @@ button, input, optgroup, select, textarea {
   text-transform: uppercase;
 }
 
-.vitality-block__hp {
-  background: #F2F2F0;
-  border: 1pt solid #000;
-  border-radius: 4pt 4pt 0 0;
-  margin-top: 5pt;
-  padding: 3pt 3pt 3pt 6pt;
-  width: 100%;
-}
 
 .vitality-block__input-label {
   align-items: center;
@@ -1029,7 +963,7 @@ button, input, optgroup, select, textarea {
   margin-top: 2pt;
   text-align: center;
   width: 100%;
-  background: #F2F2F0;
+  outline: none;
 }
 input {
   border-radius: 0;
@@ -1052,19 +986,11 @@ button, input, optgroup, select, textarea {
 .char-sheet__body .char-sheet__label {
   font-weight: 700;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__body .char-sheet__label {
   font-weight: 700;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__label {
   font-family: Open Sans,sans-serif;
   font-size: 6pt;
@@ -1111,7 +1037,6 @@ button, input, optgroup, select, textarea {
   margin-top: 3pt;
 }
 .vitality-block__hp {
-  background: #F2F2F0;
   border: 1pt solid #000;
   border-radius: 4pt 4pt 0 0;
   margin-top: 5pt;
@@ -1119,14 +1044,6 @@ button, input, optgroup, select, textarea {
   width: 100%;
 }
 
-
-.vitality-block__hp-input {
-  border: 0;
-  height: 35pt;
-  margin-top: 2pt;
-  text-align: center;
-  width: 100%;
-}
 input {
   border-radius: 0;
 }
@@ -1148,11 +1065,7 @@ button, input, optgroup, select, textarea {
 .char-sheet__body .char-sheet__label {
   font-weight: 700;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__body .char-sheet__label {
   font-weight: 700;
 }
@@ -1171,14 +1084,7 @@ button, input, optgroup, select, textarea {
 .sasa{
   display: flex;
 }
-.vitality-block__medium {
-  background: #F2F2F0;
-  border: 1pt solid #000;
-  border-radius: 4pt;
-  margin-right: 4pt;
-  padding: 3pt 3pt 3pt 6pt;
-  width: calc(50% - 2pt);
-}
+
 
 
 
@@ -1269,22 +1175,14 @@ button, input, optgroup, select, textarea {
 .char-sheet__label.min {
   font-size: 5pt;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__body .char-sheet__label {
   font-weight: 700;
 }
 .char-sheet__label.min {
   font-size: 5pt;
 }
-.char-sheet__label.centered {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
+
 .char-sheet__label {
   font-family: Open Sans,sans-serif;
   font-size: 6pt;
@@ -1297,7 +1195,6 @@ button, input, optgroup, select, textarea {
   margin-right: 0;
 }
 .vitality-block__medium {
-  background: #F2F2F0;
   border: 1pt solid #000;
   border-radius: 4pt;
   margin-right: 22.5pt;
@@ -1332,8 +1229,7 @@ button, input, optgroup, select, textarea {
 }
 .vitality-block__death-circle {
   align-items: center;
-  background: #fff;
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   border-radius: 50%;
   display: flex;
   height: 15px;
@@ -1389,7 +1285,7 @@ button, input, optgroup, select, textarea {
   padding: 0 1pt;
   pointer-events: none;
   position: absolute;
-  top: -4pt;
+  top: -1pt;
   width: 234.7pt;
   z-index: 10;
   margin-top: 20.4px;
@@ -1403,7 +1299,7 @@ button, input, optgroup, select, textarea {
 }
 
 .coins-block__label {
-  background: #fff;
+
   border: 1px solid #000;
   border-radius: 2px 2px 0 0;
   display: block;
@@ -1429,6 +1325,7 @@ button, input, optgroup, select, textarea {
   pointer-events: auto;
   text-align: center;
   width: 31pt;
+  outline: none;
 }
 input {
   border-radius: 0;
@@ -1465,6 +1362,7 @@ button, input, optgroup, select, textarea {
   position: relative;
 }
 .char-sheet__Attacks_and_Spells{
+  margin-bottom: 0pt;
   padding-left: 5pt;
 }
 .char-sheet__Attacks_and_Spells label p{
@@ -1479,6 +1377,7 @@ button, input, optgroup, select, textarea {
   resize:none;
   outline:none;
   overflow: scroll;
+  margin-bottom: 0pt;
 }
 
 .char-sheet__equipment-wrapper__textarea_block{
@@ -1487,12 +1386,13 @@ button, input, optgroup, select, textarea {
 }
 
 #char-sheet__equipment-wrapper{
-  height: 146pt;
+  height: 143pt;
   width: 220pt;
   resize:none;
   outline:none;
   overflow: scroll;
-  margin-top: 35pt;
+  margin-top: 38pt;
+  margin-bottom: 0pt;
 }
 
 .char-sheet__equipment-wrapper__textarea_block label p{
@@ -1507,7 +1407,7 @@ button, input, optgroup, select, textarea {
   margin-top: 44pt;
 }
 
-.Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea{
+.text__textarea{
   width: 200pt;
   height: 43pt;
   resize:none;
@@ -1516,7 +1416,7 @@ button, input, optgroup, select, textarea {
   margin-bottom: 6.9pt;
 }
 
-.Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities label P{
+.Character-Traits_Ideals_Affections_Weaknesses_Skills-and-abilities__textarea_block label P{
   margin: 0;
   font-size: 10pt;
   text-align: center;
@@ -1550,6 +1450,7 @@ textarea{
   overflow: scroll;
   background-color: #F2F2F0;
   scrollbar-width: none;
+  z-index: 10;
 }
 
 .hidden{
@@ -1641,9 +1542,376 @@ li strong{
   display: none;
 }
 
-/* .profile__avatar-img{
-  display: none;
-} */
-/* end comment */
-/* end show information */
+.vitality-block__box-value.char-sheet__input{
+  outline: none;
+  color: #4c453f;
+}
+.big.char-sheet__input{
+  outline: none;
+}
+/* dark theme */
+body.dark-theme .stat-block{
+  border: 1pt solid #8c8273;
+}
 
+body.dark-theme p{
+  color: #c6a690;
+}
+
+body.dark-theme .modifier-block__modifier{
+  border: 1pt solid #8c8273;
+  background-color: #181a1b;
+}
+
+body.dark-theme .modifier-block__label{
+  border: 1pt solid #8c8273;
+}
+
+body.dark-theme .stat-block__score{
+  background-color: #181a1b;
+  color: #c6a690;
+  border: 1pt solid #8c8273;
+}
+
+body.dark-theme .char-skill__modifier {
+  color: #c6a690;
+}
+
+body.dark-theme .vitality-block {
+  background: #232526;
+}
+
+body.dark-theme .char-sheet__label {
+  color: #c6a690;
+}
+
+body.dark-theme .vitality-block__hp {
+  border: 1pt solid #8c8273;
+}
+
+body.dark-theme .vitality-block__medium {
+  border: 1pt solid #8c8273;
+}
+
+body.dark-theme .text__textarea {
+  border-color: #8c8273;
+  color: #e8e6e3;
+}
+
+body.dark-theme .coins-block__input {
+  border-color: #8c8273;
+  color: #e8e6e3;
+}
+
+body.dark-theme .coins-block__label{
+  border-color: #8c8273;
+  color: #e8e6e3;
+}
+
+body.dark-theme .vitality-block__hp-input{
+  color: #e8e6e3;
+}
+
+body.dark-theme .vitality-block__input{
+  color: #e8e6e3;
+}
+
+body.dark-theme .vitality-block__hp-input.small.char-sheet__input{
+  color: #e8e6e3;
+}
+
+body.dark-theme .vitality-block__box-value.char-sheet__input{
+  color: #e8e6e3;
+}
+
+body.dark-theme .vitality-block__box{
+  border-color: #8c8273;
+}
+
+body.dark-theme .vitality-block__input-label{
+  color: #c6a690;
+}
+
+body.dark-theme .char-sheet__info{
+  border-color: #876046;
+}
+
+body.dark-theme .char-sheet__name{
+  border-color: #876046;
+}
+
+body.dark-theme .char-sheet__info-input_small.small.char-sheet__input{
+  color: #e8e6e3;
+}
+
+body.dark-theme .big.char-sheet__input{
+  color: #c6a690;
+}
+
+body.dark-theme .vitality-block__shield {
+  stroke: #8c8273;
+}
+
+body.dark-theme .saves-block {
+  border: 1pt solid #8c8273;
+}
+
+body.dark-theme .vitality-block__hp{
+  border: 1pt solid #8c8273;
+}
+
+body.dark-theme .char-sheet__info-box input{
+  color: #e8e6e3;
+}
+
+body.dark-theme #information-block {
+  border: 1px solid #8c8273;
+  background-color: #181a1b;
+}
+
+body.dark-theme .card-title {
+  color: #c6a690;
+}
+
+body.dark-theme li strong {
+  color: #c6a690;
+}
+
+body.dark-theme li {
+  color: #e8e6e3;
+}
+
+body.dark-theme .subsection.desc p {
+  color: #e8e6e3;
+}
+
+body.dark-theme .comment__body.card__article-body {
+  color: #e8e6e3;
+}
+
+body.dark-theme .comment__header a {
+  color: #c6a690;
+}
+
+
+/* armor and wepon and directory */
+.armor .table{
+  display: none;
+}
+
+.weppons .table{
+  display: none;
+}
+
+.directory iframe{
+  display: none;
+}
+
+.armor svg path{
+  fill: #4c453f;
+}
+
+.weppons svg path{
+  fill: #4c453f;
+}
+
+.directory svg path{
+  fill: #4c453f;
+}
+
+
+.directory__container {
+  margin-top: 18.95rem;
+  right: 0pt;
+  height: 400pt;
+  width: 360pt;
+  position: absolute;
+  display: flex;
+  z-index: 1;
+}
+
+
+.icon__container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.icon__container .armor{
+  width: 2rem;
+  height: 2rem;
+  border: solid 1px black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.icon__container .weppons{
+  width: 2rem;
+  height: 2rem;
+  border: solid 1px black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.icon__container .directory{
+  width: 2rem;
+  height: 2rem;
+  border: solid 1px black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.directory__container .information__container{
+  display: none;
+  overflow: auto;
+  margin-top: 0rem;
+  margin-left: 1rem;
+  border: solid 1px black;
+  width: 85%;
+}
+
+.directory__container .information__container iframe{
+  width: 25rem;
+  height: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Убирает двойные границы */
+}
+
+.table th{
+  color: #6e4e39;
+  border: 1px solid black; /* Черные границы вокруг всех ячеек */
+  padding: 8px;
+  text-align: left;
+}
+
+.table td{
+  color: #4c453f;
+  border: 1px solid black; /* Черные границы вокруг всех ячеек */
+  padding: 8px;
+  text-align: left;
+}
+
+
+/* dark-theme */
+/* armor and wepon and directory */
+
+body.dark-theme .armor svg path{
+  fill: #e8e6e3;
+}
+
+body.dark-theme .weppons svg path{
+  fill: #e8e6e3;
+}
+body.dark-theme .directory svg path{
+  fill: #e8e6e3;
+}
+
+body.dark-theme .table td {
+  color: #e8e6e3;
+  border: 1px solid #8c8273;
+}
+
+body.dark-theme .table th{
+  color: #c6a690;
+  border: 1px solid #8c8273;
+}
+
+body.dark-theme .icon__container .armor{
+  border: solid 1px #8c8273;
+}
+
+body.dark-theme .icon__container .weppons{
+
+  border: solid 1px #8c8273;
+}
+body.dark-theme .icon__container .directory{
+
+  border: solid 1px #8c8273;
+}
+
+body.dark-theme .directory__container .information__container{
+  border: solid 1px #8c8273;
+  color: #F2F2F0;
+}
+
+
+
+/* Для экранов от 1366px до 1919px */
+@media (min-width: 1366px) and (max-width: 1919px) {
+
+  .stats-list {
+    width: 700pt;
+    height: 800pt;
+    position: absolute;
+    margin-top: 40rem;
+    left: 40%;
+    transform: translate(-50%, -50%);
+  }
+  body.dark-theme #information-block {
+    border: 1px solid #8c8273;
+    background-color: #181a1b;
+  }
+
+  #information-block{
+    position: absolute;
+    top:28rem;
+    left: 68rem;
+    border: 1px solid black;
+    background-color: transparent;
+    width: 323pt;
+    height: 527pt;
+    overflow: scroll;
+    background-color: #F2F2F0;
+    scrollbar-width: none;
+  }
+
+  .directory__container {
+    
+    margin-top: 18.9rem;
+    right: 0rem;
+    height: 38rem;
+    width: 28rem;
+    position: absolute;
+    display:block;
+  }
+  
+
+  .directory__container .information__container{
+    display: none;
+    overflow: auto;
+    margin-top: 0rem;
+    margin-left: 0rem;
+    border: solid 1px black;
+    background-color: #F2F2F0;
+    width: 27rem;
+    height: 38rem;
+  }
+
+  body.dark-theme .directory__container .information__container{
+    display: none;
+    overflow: auto;
+    margin-top: 1rem;
+    margin-left: 0rem;
+    border: solid 1px black;
+    background-color: #181a1b;
+    width: 27rem;
+    height: 32rem;
+  }
+
+  .directory__container .information__container iframe{
+    width: 27rem;
+    height: 100%;
+  }
+}

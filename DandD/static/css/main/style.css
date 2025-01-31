@@ -1,42 +1,57 @@
 body{
-    background: #222222;
+    background: #F2F2F0;
 }
 
+.main__container {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+}
 .background-container__image{
-    margin-left: 5rem;
-    margin-top: 14rem;
+    position: relative;
+    left: 10rem;
 }
 .background-container__image .background__image{
-    width: 40%;
+    width: 80%;
+    margin-right: 10rem;
+    filter: sepia(0%) hue-rotate(31.82deg) brightness(8.63%);
 }
 
 .main-activity__title{
-    color: aliceblue;
+    color: #1D0F0F;
     display: block;
-    position: absolute;
-    left: 78em;
-    top: 13.5rem;
     display: flex;
+    margin-bottom: 2rem;
+}
+
+.main-activity__title h2{
+    margin: auto;
+    font-size: 1.7rem;
 }
 
 .main-activity__container{
-    position: absolute;
-    left: 60rem;
+    width: 78%;
+    max-width: 100%;
     top: 21rem;
     display: flex;
+    margin-left: 5rem;
+}
+
+.main-activity__container p{
+    color: #1D0F0F;
 }
 
 .main-activity{
     width: 15rem;
-    border-left: white solid 1px;
+    border-left: #1D0F0F solid 1px;
     color: aliceblue;
 }
 
 .main-activity a{
     text-decoration: none;
-    color: white;
+    color: #1D0F0F;
 }
-
 
 .main-activity.block1{
     border-left: none;
@@ -44,6 +59,7 @@ body{
 
 .main-activity.block2{
     padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .main-activity.block3{
@@ -51,10 +67,12 @@ body{
 }
 
 .dice__container{
-    position: absolute;
-    left: 70em;
-    top: 38rem;
+    cursor: pointer;
     display: flex;
+    max-width: 45rem;
+    padding-top: 2rem;
+    margin-left: 13rem;
+    filter: sepia(0%) hue-rotate(31.82deg) brightness(8.63%);
 }
 
 /* Добавляем анимацию  */
@@ -68,12 +86,45 @@ body{
 }
 
 .dice__container .dice__container-dice{
-    width: 6%;
+    max-width: 2.5rem;
     margin-right: 2rem;
-    
 }
 
 .dice__container-dice:hover {
     animation: shake 0.6s ease-in-out infinite;
 }
 
+body.dark-theme .main-activity__title{
+    color: #c2e4ff;
+}
+
+body.dark-theme .main-activity__container p{
+    color: #c2e4ff;
+}
+
+body.dark-theme .main-activity a {
+    color: aliceblue;
+}
+
+body.dark-theme .background-container__image .background__image{
+    width: 80%;
+    margin-right: 10rem;
+    filter: sepia(0%) hue-rotate(0deg) brightness(100%);
+}
+
+body.dark-theme .dice__container{
+    cursor: pointer;
+    display: flex;
+    max-width: 45rem;
+    padding-top: 2rem;
+    margin-left: 13rem;
+    filter: sepia(0%) hue-rotate(0deg) brightness(100%);
+}
+
+body.dark-theme .main-activity{ 
+    border-left: aliceblue solid 1px;
+}
+
+body.dark-theme .main-activity.block1{
+    border-left: none;
+}

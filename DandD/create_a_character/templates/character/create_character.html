@@ -1,4 +1,38 @@
 {% extends "base.html" %} {% load static %}
 {% block head %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static "css/create_a_character/style.css" %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
 {% endblock head %}
+{% csrf_token %}
+{% block content %}
+
+    <div class="add__character">
+        <p>Добавить персонажа</p>
+    </div>
+    <div id="character-container" class="container__charcters">
+        <div class="row">
+            {% for character in characters %}
+                <div class="col-sm-6 character-card" data-id="{{ character.id }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" action="{% url 'character:delete_character' character.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="delite_btn">X</button>
+                            </form>
+                            
+                            <h5 class="card-title">Имя: {{ character.name }}</h5>
+                            <p class="card-text">Класс: {{ character.character_class }}</p>
+                            <p class="card-text">Хп: {% if character.current_hp == None %}-{% else %}{{ character.current_hp }} {% endif %}</p>
+                            <a href="{% url "characteristics:characteristics_page" character.id %}" class="btn btn-primary">Перейти</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock content %}
+{% block footer %}
+    <script src="{% static "js/create_a_character/scripts.js" %}"></script>
+{% endblock footer %}

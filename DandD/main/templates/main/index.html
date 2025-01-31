@@ -3,25 +3,39 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/main/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 {% endblock head %}
 {% block content %}
-    <div class="background-container__image">
-        <img class="background__image" src="{% static "img/bg__img__main.png" %}" alt="">
-    </div>
+   
 
-    <div class="main-activity__title"><h2>Что тут <span>есть ?</span></h2></div>
-    <div class="main-activity__container">
-        <div class="main-activity block1"><h3><a href="#">Создайте своего героя</a></h3> <p>будь то храбрый рыцарь, загадочный маг или искусный вор.</p></div>
-        <div class="main-activity block2"><h3><a href="#">История миров</a></h3> <p>Погрузитесь в историю мира, где разворачиваются ваши приключения.</p></div>
-        <div class="main-activity block3"><h3><a href="#">Играйте с друзьями</a></h3> <p>Место, где рождаются миры и легнды!</p></div>
-    </div>
+    <div class='main__container'>
+        <div class="background-container__image">
+            <img class="background__image" src="{% static "img/bg__img__main.png" %}" alt="">
+        </div>
 
-    <div class="dice__container">
-        <img class="dice__container-dice d100" src="{% static "img/D100.png" %}" alt="">
-        <img class="dice__container-dice d20" src="{% static "img/D20.png" %}" alt="">
-        <img class="dice__container-dice d12" src="{% static "img/D12.png" %}" alt="">
-        <img class="dice__container-dice d8" src="{% static "img/D8.png" %}" alt="">
-        <img class="dice__container-dice d6" src="{% static "img/D6.png" %}" alt="">
-        <img class="dice__container-dice d4" src="{% static "img/D4.png" %}" alt="">
+        <div>
+            <div class="main-activity__title"><h2>Что тут есть ?</h2></div>
+
+            <div class="main-activity__container">
+                <div class="main-activity block1"><h3><a href="#">Создайте своего героя</a></h3> <p>будь то храбрый рыцарь, загадочный маг или искусный вор.</p></div>
+                <div class="main-activity block2"><h3><a href="#">История миров</a></h3> <p>Погрузитесь в историю мира, где разворачиваются ваши приключения.</p></div>
+                <div class="main-activity block3"><h3><a href="#">Играйте с друзьями</a></h3> <p>Место, где рождаются миры и легнды!</p></div>
+            </div>
+
+            <div class="dice__container">
+                <img class="dice__container-dice d100" src="{% static "img/D100.png" %}" alt="">
+                <img class="dice__container-dice d20" src="{% static "img/D20.png" %}" alt="">
+                <img class="dice__container-dice d12" src="{% static "img/D12.png" %}" alt="">
+                <img class="dice__container-dice d8" src="{% static "img/D8.png" %}" alt="">
+                <img class="dice__container-dice d6" src="{% static "img/D6.png" %}" alt="">
+                <img class="dice__container-dice d4" src="{% static "img/D4.png" %}" alt="">
+            </div>
+        </div>
     </div>
 {% endblock content %}
+
+
+{% block footer %}
+    <script src="{% static "js/main/scripts.js" %}"></script>
+{% endblock footer %}
