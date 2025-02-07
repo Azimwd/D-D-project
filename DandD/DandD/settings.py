@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-h-dq*nbu)$+n_q_)o*1v3r%ows9sx1bzj(@$7dz2b2o22!hlzm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'characteristics',
     'create_a_character',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,6 +107,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://550c-2-134-111-63.ngrok-free.app",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://550c-2-134-111-63.ngrok-free.app",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
